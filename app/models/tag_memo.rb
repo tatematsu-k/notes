@@ -1,0 +1,2 @@
+class TagMemo < ApplicationRecord
+end

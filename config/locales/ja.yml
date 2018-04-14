@@ -1,0 +1,6 @@
+ja:
+    users:
+        index:
+            submit: ログイン
+        create:
+            submit: 新規ユーザー登録

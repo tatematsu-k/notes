@@ -1,0 +1,10 @@
+// Place all the styles related to the login controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.lock-body #error_explanation {
+  border: none;
+  color: red;
+  background: #323d4b;
+  padding: 10px;
+  width: 100%;
+}

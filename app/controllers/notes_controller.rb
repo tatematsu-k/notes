@@ -15,6 +15,8 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    menu_active_reset
+    @menu_items[:new_note][:active] = true
   end
 
   # GET /notes/1/edit

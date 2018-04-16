@@ -8,7 +8,7 @@
             <% @menu_items.each do |key, item| %>
               <% isActive = item[:active] %>
               <li class="nav-item <%= isActive ? 'active' : '' %>">
-          			<%= link_to item[:path], class: 'nav-link' do %>
+          			<%= link_to item[:path], class: 'nav-link', method: (item[:method] ? item[:method] : 'get') do %>
                   <%= item[:title] %>
                   <% if isActive %>
                     <span class="sr-only">(current)</span>

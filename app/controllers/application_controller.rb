@@ -1,24 +1,23 @@
 class ApplicationController < ActionController::Base
-  before_action :login_check, if: :login_check_enable?
-
+  before_action :init, :authenticate_user!
   protect_from_forgery with: :exception
 
-  def login_check
-    p 'call login check'
-    if (user = session[:login_user])
-      @login_user = User.find(user)
-      unless @login_user
-        puts "access user is not exist in DB (login_id: #{user} )"
-        redirect_to login_path
-      end
-
-      init
-    else
-      flash[:error_message] = 'ログイン後一定時間操作が無かったため自動ログアウトしました。'
-      puts 'fails access to not find login session'
-      redirect_to login_path
-    end
-  end
+  # def login_check
+  #   p 'call login check'
+  #   if (user = session[:login_user])
+  #     @login_user = User.find(user)
+  #     unless @login_user
+  #       puts "access user is not exist in DB (login_id: #{user} )"
+  #       redirect_to login_path
+  #     end
+  #
+  #     init
+  #   else
+  #     flash[:error_message] = 'ログイン後一定時間操作が無かったため自動ログアウトしました。'
+  #     puts 'fails access to not find login session'
+  #     redirect_to login_path
+  #   end
+  # end
 
   def init
     set_menu_items
@@ -38,7 +37,8 @@ class ApplicationController < ActionController::Base
       },
       logout: {
         title: 'ログアウト',
-        path: logout_path,
+        path: destroy_user_session_path,
+        method: 'delete',
         active: false
       }
     }

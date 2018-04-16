@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  post '/login', to: 'login#login'
-  get '/logout', to: 'login#logout'
+  devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root to: 'notes#index', as: :authenticated_root
+    end
+    unauthenticated :user do
+      root to: 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
 
-  root to: 'users#index'
-  get '/login', to: 'users#index'
   resources :notes
-  resources :users
+  # resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

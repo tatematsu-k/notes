@@ -15,6 +15,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    @note.user = current_user
     menu_active_reset
     @menu_items[:new_note][:active] = true
   end
@@ -27,6 +28,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    @note.user.build(current_user)
 
     respond_to do |format|
       if @note.save

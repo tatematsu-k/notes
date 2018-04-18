@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api, format: 'json' do
+    get 'tag/search'
+  end
+
   devise_for :users
   devise_scope :user do
     authenticated :user do

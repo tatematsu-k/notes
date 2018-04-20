@@ -12,4 +12,7 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require_directory ./lib
+//= require_directory ./classes
+//= require_directory ./pages
 //= require_tree .

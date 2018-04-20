@@ -12,6 +12,20 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :tags %>
+    <%= form.text_field :tags_text, id: :tags_text %>
+    <%= button_tag type: 'button', onclick: 'javascript:void(0);', id: 'add_tag_button' do %>
+      追加
+    <% end %>
+    <div id="tag_candidate_area">
+      もしかして
+    </div>
+    <div id="tag_selected_area">
+      選択済み
+    </div>
+  </div>
+
+  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :note_title %>
   </div>

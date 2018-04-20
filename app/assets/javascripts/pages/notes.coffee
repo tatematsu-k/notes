@@ -19,8 +19,19 @@ onPageLoad ['notes#new', 'notes#edit'], ->
         area_refresh($candidate_area)
       else
         $candidate_area.find('.note_tag').remove()
+
         area_refresh($candidate_area)
     search_ajax(tag_name, success_func)
+
+  $("#add_tag_button").on 'click', (e) ->
+    tag_name = $('#tags_text').val()
+    if tag_name
+      tag = new Tag(tag_name)
+      Tag.select_tag(tag)
+      $('#tags_text').val('')
+      $('#tag_candidate_area .note_tag').remove()
+      area_refresh($("#tag_candidate_area"))
+      area_refresh($("#tag_selected_area"))
 
 
 search_ajax = (tag_name, success_func, error_func) ->

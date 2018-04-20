@@ -17,7 +17,8 @@ class window.Tag
     tag
 
   @select_tag: (tag) ->
-    
+    $selected_area = $('#tag_selected_area')
+    $selected_area.append(tag.create_selected_tag())
 
   refresh: (target, tags) ->
     target.empty

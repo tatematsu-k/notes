@@ -1,4 +1,4 @@
 class TagMemo < ApplicationRecord
-  has_many :notes
-  has_many :tags
+  belongs_to :note
+  belongs_to :tag
 end

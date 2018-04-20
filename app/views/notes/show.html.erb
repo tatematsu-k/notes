@@ -6,6 +6,15 @@
 </p>
 
 <p>
+  <strong>Tag:</strong>
+  <% if @note.tags.length > 0 %>
+    <% @note.tags.each do |tag| %>
+      <%= tag.name %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
   <strong>Content:</strong>
   <%= @note.content %>
 </p>

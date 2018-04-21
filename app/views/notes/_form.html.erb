@@ -22,6 +22,19 @@
     </div>
     <div id="tag_selected_area">
       選択済み
+      <% if note.tags.present? %>
+        <% note.tags.each do |tag| %>
+          <%= fields_for :tag do |t| %>
+            <div class='tag_wrapper'>
+              <div class="note_tag">
+                <%= tag.name %>
+              </div>
+              <%= t.hidden_field '][id', id: 'tag_id', value: tag.id %>
+              <%= t.hidden_field '][name', id: 'tag_name', value: tag.name %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 

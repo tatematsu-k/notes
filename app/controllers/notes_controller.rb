@@ -28,10 +28,11 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    @tags = tag_list_from_param
     @note.user = current_user
 
     respond_to do |format|
-      if @note.save
+      if @note.save && Tag.update_note_tags(current_user, @note.id, @tags)
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
@@ -44,8 +45,9 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
+    @tags = tag_list_from_param
     respond_to do |format|
-      if @note.update(note_params)
+      if @note.update(note_params) && Tag.update_note_tags(current_user, @note.id, @tags)
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: @note }
       else
@@ -74,5 +76,13 @@ class NotesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
       params.require(:note).permit(:title, :content, :user_id)
+    end
+
+    def tag_list_from_param
+      tags = []
+      params.require(:tag).each do |tag|
+        tags << Tag.new(tag.permit(:id, :name))
+      end
+      tags
     end
 end

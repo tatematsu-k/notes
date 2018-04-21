@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 class window.Tag
-  @id: 0
+  @id: -1
   @name: ''
   @status: 'new' # new or exist
 
@@ -29,4 +29,9 @@ class window.Tag
     return "<div class='note_tag candidate_#{@status}'>#{@name}</div>"
 
   create_selected_tag: () ->
-    return "<div class='note_tag'>#{@name}</div>"
+    return "
+    <div class='tag_wrapper'>
+      <div class='note_tag'>#{@name}</div>
+      <input type='hidden' name='tag[][id]' value='#{@id}'>
+      <input type='hidden' name='tag[][name]' value='#{@name}'>
+    </div>"

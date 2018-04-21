@@ -15,6 +15,7 @@ class Tag < ApplicationRecord
       tag = Tag.select('id', 'name')
           .where(['user_id = ?', user.id])
           .where(['name = ?', tag_name])
+          .first
       if tag.blank?
         tag = Tag.new
         tag.user = user
@@ -22,6 +23,20 @@ class Tag < ApplicationRecord
         tag.save
       end
       tag
+    end
+
+    def update_note_tags(user, note_id, tags)
+      TagMemo.delete_by_note_id(note_id)
+      tag_list = [] if tags.present?
+      tags.each do |tag|
+        tag = Tag.search_or_insert(user, tag.name)
+        tag_memo = TagMemo.new
+        tag_memo.note_id = note_id
+        tag_memo.tag_id = tag.id
+        tag_memo.save
+        tag_list << tag
+      end
+      tag_list
     end
   end
 end

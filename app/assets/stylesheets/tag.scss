@@ -1,37 +1,41 @@
 // Place all the styles related to the api/tag controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.note_tag {
+.tag_wrapper {
   display: inline-block;
-  border: 1px solid #CCCCCC;
-  background-color: #EEEEEE;
-  color: #222222;
-  padding: 5px 12px;
-  margin-right: 10px;
-}
 
-.note_tag:hover {
-  background-color: #CCCCCC;
-}
+  .note_tag {
+    display: inline-block;
+    border: 1px solid #CCCCCC;
+    background-color: #EEEEEE;
+    color: #222222;
+    padding: 5px 12px;
+    margin-right: 10px;
+  }
 
-.note_tag.candidate_new {
-  border: #AACCAA;
-  background-color: #AAEEAA;
-  color: #22AA22;
-}
+  .note_tag:hover {
+    background-color: #CCCCCC;
+  }
 
-.note_tag.candidate_new:hover {
-  background-color: #AACCAA;
-}
+  .note_tag.candidate_new {
+    border: #AACCAA;
+    background-color: #AAEEAA;
+    color: #22AA22;
+  }
 
-.note_tag.candidate_exist {
-  border: #AAAACC;
-  background-color: #AAAAEE;
-  color: #2222AA;
-}
+  .note_tag.candidate_new:hover {
+    background-color: #AACCAA;
+  }
 
-.note_tag.candidate_exist:hover {
-  background-color: #AAAACC;
+  .note_tag.candidate_exist {
+    border: #AAAACC;
+    background-color: #AAAAEE;
+    color: #2222AA;
+  }
+
+  .note_tag.candidate_exist:hover {
+    background-color: #AAAACC;
+  }
 }
 
 #tag_candidate_area, #tag_selected_area {

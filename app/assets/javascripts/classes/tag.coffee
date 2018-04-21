@@ -26,7 +26,10 @@ class window.Tag
       target.append tag.create_tag
 
   create_candidate_tag: () ->
-    return "<div class='note_tag candidate_#{@status}'>#{@name}</div>"
+    return "
+    <div class='tag_wrapper'>
+      <div class='note_tag candidate_#{@status}'>#{@name}</div>
+    </div>"
 
   create_selected_tag: () ->
     return "

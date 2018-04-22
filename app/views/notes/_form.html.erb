@@ -17,10 +17,10 @@
     <%= button_tag type: 'button', onclick: 'javascript:void(0);', id: 'add_tag_button' do %>
       追加
     <% end %>
-    <div id="tag_candidate_area">
+    <div id="tag_candidate_area" class="tag_area">
       もしかして
     </div>
-    <div id="tag_selected_area">
+    <div id="tag_selected_area" class="tag_area">
       選択済み
       <% if note.tags.present? %>
         <% note.tags.each do |tag| %>
@@ -28,6 +28,7 @@
             <div class='tag_wrapper'>
               <div class="note_tag">
                 <%= tag.name %>
+                <%= image_tag 'common/delete_icon.png', :class => 'delete-icon' %>
               </div>
               <%= t.hidden_field '][id', id: 'tag_id', value: tag.id %>
               <%= t.hidden_field '][name', id: 'tag_name', value: tag.name %>

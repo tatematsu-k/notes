@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 onPageLoad ['notes#new', 'notes#edit'], ->
-  area_refresh($('#tag_candidate_area'))
-  area_refresh($('#tag_selected_area'))
+  Tag.area_refresh($('#tag_candidate_area'))
+  Tag.area_refresh($('#tag_selected_area'))
 
   # add event todo
   $("#tags_text").on 'keyup', (e) ->
@@ -16,11 +16,11 @@ onPageLoad ['notes#new', 'notes#edit'], ->
           tag = window.Tag.create_by_data(data)
           $candidate_area.append(tag.create_candidate_tag())
           )
-        area_refresh($candidate_area)
+        Tag.area_refresh($candidate_area)
       else
         $candidate_area.find('.note_tag').remove()
 
-        area_refresh($candidate_area)
+        Tag.area_refresh($candidate_area)
     search_ajax(tag_name, success_func)
 
   $("#add_tag_button").on 'click', (e) ->
@@ -30,8 +30,11 @@ onPageLoad ['notes#new', 'notes#edit'], ->
       Tag.select_tag(tag)
       $('#tags_text').val('')
       $('#tag_candidate_area .note_tag').remove()
-      area_refresh($("#tag_candidate_area"))
-      area_refresh($("#tag_selected_area"))
+      Tag.area_refresh($("#tag_candidate_area"))
+      Tag.area_refresh($("#tag_selected_area"))
+
+  $(".tag_wrapper .delete-icon").on 'click', (e) ->
+    Tag.delete_tag($(e.target))
 
 
 search_ajax = (tag_name, success_func, error_func) ->
@@ -41,9 +44,3 @@ search_ajax = (tag_name, success_func, error_func) ->
   }
 
   ajax_core(url, request_data, success_func, error_func)
-
-area_refresh = ($area) ->
-  if $area.find('.note_tag').length
-    $area.show()
-  else
-    $area.hide()

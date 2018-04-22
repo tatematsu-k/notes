@@ -18,7 +18,21 @@ class window.Tag
 
   @select_tag: (tag) ->
     $selected_area = $('#tag_selected_area')
-    $selected_area.append(tag.create_selected_tag())
+    $tag_html = $(tag.create_selected_tag())
+    $selected_area.append($tag_html)
+    $tag_html.find('.delete-icon').on 'click', (e) ->
+      Tag.delete_tag($(e.target))
+
+  @delete_tag: ($target) ->
+    $area = $target.closest('.tag_area')
+    $target.closest(".tag_wrapper").remove()
+    Tag.area_refresh($area)
+
+  @area_refresh = ($area) ->
+    if $area.find('.note_tag').length
+      $area.show()
+    else
+      $area.hide()
 
   refresh: (target, tags) ->
     target.empty
@@ -34,7 +48,10 @@ class window.Tag
   create_selected_tag: () ->
     return "
     <div class='tag_wrapper'>
-      <div class='note_tag'>#{@name}</div>
+      <div class='note_tag'>
+        #{@name}
+        <image src='http://localhost:3000/assets/common/delete_icon.png' class='delete-icon'>
+      </div>
       <input type='hidden' name='tag[][id]' value='#{@id}'>
       <input type='hidden' name='tag[][name]' value='#{@name}'>
     </div>"

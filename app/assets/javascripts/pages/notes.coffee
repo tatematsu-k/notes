@@ -36,7 +36,6 @@ onPageLoad ['notes#new', 'notes#edit'], ->
   $(".tag_wrapper .delete-icon").on 'click', (e) ->
     Tag.delete_tag($(e.target))
 
-
 search_ajax = (tag_name, success_func, error_func) ->
   url = "http://localhost:3000/api/tag/search"
   request_data = {

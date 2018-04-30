@@ -1,3 +1,39 @@
 // Place all the styles related to the notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$card_width: 15rem;
+$card_height: 16rem;
+$card_ver_margin: 1rem;
+
+.card-box {
+  overflow: auto;
+  min-height: $card_height;
+  max-height: $card_height * 2 + $card_ver_margin;
+
+  .card.note_card {
+    width: $card_width;
+    min-width: $card_width;
+    max-width: $card_width;
+    height: $card_height;
+    min-height: $card_height;
+    max-height: $card_height;
+    margin-bottom: $card_ver_margin;
+
+    .card-header .card-button-group {
+      float: right;
+      .card-button {
+        font-size: 0.7rem;
+        padding: 3px 5px;
+        border: 1px solid rgba(0,0,0,.125);
+        margin-left: 4px;
+      }
+      .card-button:hover {
+        background-color: rgba(0,0,0,.125);
+        cursor: pointer;
+      }
+      :after {
+        clear: both;
+      }
+    }
+  }
+}

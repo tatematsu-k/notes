@@ -2,21 +2,19 @@
 
 <h1>Notes</h1>
 
-
-<% @notes.each do |note| %>
-  <%= basic_card do -%>
-    <%= card_header do -%>
-      <%= note.title %>
+<div class="card-deck card-box">
+  <% @notes.each do |note| %>
+    <%= basic_card do -%>
+      <%= card_header note do -%>
+        <%= note.title %>
+      <% end -%>
+      <%= card_body do -%>
+        <%= note.content %><br />
+        <%= link_to 'もっと読む', note %>
+      <% end -%>
     <% end -%>
-    <%= card_body do -%>
-      <%= note.content %><br />
-      <%= note.user.name %>
-      <%= link_to 'Show', note %>
-      <%= link_to 'Edit', edit_note_path(note) %>
-      <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end -%>
-  <% end -%>
-<% end %>
+  <% end %>
+</div>
 
 <br>
 

@@ -17,6 +17,10 @@ class NotesController < ApplicationController
   def new
     @note = Note.new
     @note.user = current_user
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      @note.tags << tag
+    end
     menu_active_reset
     @menu_items[:new_note][:active] = true
   end

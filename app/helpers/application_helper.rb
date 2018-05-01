@@ -19,6 +19,12 @@ module ApplicationHelper
               method: :delete,
               data: { confirm: 'Are you sure?' }
           end
+        elsif data.is_a?(Tag)
+          content_tag(:div, class: 'card-button-group') do
+            concat link_to '+',
+              new_note_path(tag_id: data.id),
+              class: ['btn', 'card-button', 'note-new-button']
+          end
         end
       )
       concat(

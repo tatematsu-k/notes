@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :tags %>
-    <%= form.text_field :tags_text, id: :tags_text %>
+    <%= form.text_field :tags_text, id: :tags_text, class: 'form-control' %>
     <%= button_tag type: 'button', onclick: 'javascript:void(0);', id: 'add_tag_button' do %>
       追加
     <% end %>
@@ -39,19 +39,14 @@
     </div>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :note_title %>
+    <%= form.text_field :title, id: :note_title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :content %>
-    <%= form.text_area :content, id: :note_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= @note.user.name %>
+    <%= form.text_area :content, id: :note_content, class: ['form-control', 'note-content-area'] %>
   </div>
 
   <div class="actions">

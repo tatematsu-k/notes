@@ -2,19 +2,28 @@
 
 <h1>Notes</h1>
 
-<div class="card-deck card-box">
+<div class="card-deck card-box tag-card">
   <% @all_tags.each do |tag| %>
     <%= basic_card do -%>
       <%= card_header tag do -%>
         <%= tag.name %>
       <% end -%>
-      <% tag.notes.each do |note| %>
-        <div class="">
-          <%= note.title %>
-        </div>
-      <% end %>
-      <!-- <%= card_body do -%>
-      <% end -%> -->
+
+      <div class="list-group scroll-area">
+        <% tag.notes.each do |note| %>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="note-title mb-1 "><%= note.title %></h5>
+            <small class="text-muted">
+              <%= format_date note.updated_at %>
+            </small>
+          </div>
+          <div class="note-content mb-1">
+              <%= simple_format(note.content) %>
+          </div>
+        </a>
+        <% end %>
+      </div>
     <% end -%>
   <% end %>
 </div>
@@ -26,8 +35,7 @@
         <%= note.title %>
       <% end -%>
       <%= card_body do -%>
-        <%= simple_format(note.content) %><br />
-        <!-- <%= link_to 'もっと読む', note %> -->
+        <%= simple_format(note.content) %>
       <% end -%>
     <% end -%>
   <% end %>

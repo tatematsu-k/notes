@@ -34,4 +34,17 @@ module ApplicationHelper
       concat content_tag(:div, capture(&block), class: 'card-text')
     end
   end
+
+  def format_date(date_time)
+    now = Time.now
+    diff = (now - date_time).floor
+    case diff
+    when 0...(60 * 60)
+      (diff / 60).to_s + ' minutes ago'
+    when (60 * 60)...(60 * 60 * 24)
+      (diff / 60 / 60).to_s + ' hours ago'
+    else
+      date_time.strftime('%Y/%m/%d')
+    end
+  end
 end

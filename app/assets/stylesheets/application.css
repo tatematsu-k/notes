@@ -27,3 +27,7 @@ header .login-user {
   margin-left: 15px;
   font-size: 1.0em;
 }
+
+.scroll-area {
+  overflow: auto;
+}

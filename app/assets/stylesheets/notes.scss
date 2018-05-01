@@ -1,13 +1,15 @@
 // Place all the styles related to the notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$card_width: 15rem;
+$card_width: 20rem;
 $card_height: 16rem;
 $card_ver_margin: 1rem;
 
-$font-size-base: 14px;
 $line-height-computed: 1.4;
-$lines-to-show: 8.5;
+$lines-to-show: 10;
+
+$note-title-size: 14px;
+$note-content-size: 13px;
 
 .card-box {
   overflow: auto;
@@ -57,8 +59,8 @@ $lines-to-show: 8.5;
       .card-text {
         height: calc(100% - 1rem);
         p {
-          font-size: $font-size-base;
-          height: $font-size-base * $line-height-computed * $lines-to-show;
+          font-size: $note-content-size;
+          height: $note-content-size * $line-height-computed * $lines-to-show;
           line-height: $line-height-computed;
           position: relative;
           overflow: hidden;
@@ -68,7 +70,7 @@ $lines-to-show: 8.5;
           }
           &:before {
             content: "...";
-            top: $font-size-base * $line-height-computed * ($lines-to-show - 1);
+            top: $note-content-size * $line-height-computed * ($lines-to-show - 1);
             right: 0;
           }
           &:after {
@@ -79,5 +81,25 @@ $lines-to-show: 8.5;
         }
       }
     }
+  }
+}
+
+.tag-card {
+  .note-title {
+    font-size: $note-title-size;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+    max-width: calc(20rem - 100px);
+  }
+  .text-muted {
+    width: 80px;
+    text-align: right;
+    float: right;
+  }
+  .note-content {
+    font-size: $note-content-size;
   }
 }

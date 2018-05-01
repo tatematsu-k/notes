@@ -47,7 +47,7 @@ class NotesController < ApplicationController
   def update
     @tags = tag_list_from_param
     respond_to do |format|
-      if @note.update(note_params) && Tag.update_note_tags(current_user, @note.id, @tags)
+      if @note.update(note_params) && (@tags.empty? || Tag.update_note_tags(current_user, @note.id, @tags))
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: @note }
       else

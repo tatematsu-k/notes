@@ -3,7 +3,7 @@
 <h1>Notes</h1>
 
 <div class="card-deck card-box">
-  <% @notes.each do |note| %>
+  <% @all_notes.each do |note| %>
     <%= basic_card do -%>
       <%= card_header note do -%>
         <%= note.title %>

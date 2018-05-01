@@ -61,6 +61,8 @@ module ApplicationHelper
       (diff / 60).to_s + ' minutes ago'
     when (60 * 60)...(60 * 60 * 24)
       (diff / 60 / 60).to_s + ' hours ago'
+    when (60 * 60 * 24)...(60 * 60 * 24 * 30)
+      (diff / 60 / 60 / 24).to_s + ' days ago'
     else
       date_time.strftime('%Y/%m/%d')
     end

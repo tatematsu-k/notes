@@ -5,6 +5,10 @@ $card_width: 15rem;
 $card_height: 16rem;
 $card_ver_margin: 1rem;
 
+$font-size-base: 14px;
+$line-height-computed: 1.4;
+$lines-to-show: 8.5;
+
 .card-box {
   overflow: auto;
   min-height: $card_height;
@@ -19,17 +23,60 @@ $card_ver_margin: 1rem;
     max-height: $card_height;
     margin-bottom: $card_ver_margin;
 
-    .card-header .card-button-group {
-      float: right;
-      .card-button {
-        font-size: 0.7rem;
-        padding: 3px 5px;
-        border: 1px solid rgba(0,0,0,.125);
-        margin-left: 4px;
+    .card-header {
+      padding: .5rem 1rem;
+      .wrapper {
+        width: calc(100% - 80px);
+        overflow: hidden;
+        .header-text {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          min-width: 0;
+        }
       }
-      .card-button:hover {
-        background-color: rgba(0,0,0,.125);
-        cursor: pointer;
+      .card-button-group {
+        float: right;
+        .card-button {
+          font-size: 0.7rem;
+          padding: 3px 5px;
+          border: 1px solid rgba(0,0,0,.125);
+          margin-left: 4px;
+        }
+        .card-button:hover {
+          background-color: rgba(0,0,0,.125);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 1rem;
+      width: 100%;
+      overflow: hidden;
+      .card-text {
+        height: calc(100% - 1rem);
+        p {
+          font-size: $font-size-base;
+          height: $font-size-base * $line-height-computed * $lines-to-show;
+          line-height: $line-height-computed;
+          position: relative;
+          overflow: hidden;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size-base * $line-height-computed * ($lines-to-show - 1);
+            right: 0;
+          }
+          &:after {
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
       }
     }
   }

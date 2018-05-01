@@ -8,7 +8,6 @@ module ApplicationHelper
 
   def card_header(note, &block)
     content_tag(:div, class: 'card-header') do
-      concat content_tag(:span, capture(&block))
       concat(
         content_tag(:div, class: 'card-button-group') do
           concat link_to '編集',
@@ -18,6 +17,11 @@ module ApplicationHelper
             class: ['btn', 'card-button', 'note-delete-button'],
             method: :delete,
             data: { confirm: 'Are you sure?' }
+        end
+      )
+      concat(
+        content_tag(:div, class: 'wrapper') do
+          content_tag(:div, capture(&block), class: 'header-text')
         end
       )
     end

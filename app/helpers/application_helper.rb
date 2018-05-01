@@ -25,7 +25,7 @@ module ApplicationHelper
 
   def card_body(&block)
     content_tag(:div, class: 'card-body') do
-      concat content_tag(:p, capture(&block), class: 'card-text')
+      concat content_tag(:div, capture(&block), class: 'card-text')
     end
   end
 end

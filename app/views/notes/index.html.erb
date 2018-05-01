@@ -9,7 +9,7 @@
         <%= note.title %>
       <% end -%>
       <%= card_body do -%>
-        <%= note.content %><br />
+        <%= simple_format(note.content) %><br />
         <%= link_to 'もっと読む', note %>
       <% end -%>
     <% end -%>

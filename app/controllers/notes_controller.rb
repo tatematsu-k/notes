@@ -32,7 +32,7 @@ class NotesController < ApplicationController
     @note.user = current_user
 
     respond_to do |format|
-      if @note.save && Tag.update_note_tags(current_user, @note.id, @tags)
+      if @note.save && (@tags.empty? || Tag.update_note_tags(current_user, @note.id, @tags))
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
@@ -81,8 +81,10 @@ class NotesController < ApplicationController
 
     def tag_list_from_param
       tags = []
-      params.require(:tag).each do |tag|
-        tags << Tag.new(tag.permit(:id, :name))
+      if params[:tag]
+        params.require(:tag).each do |tag|
+          tags << Tag.new(tag.permit(:id, :name))
+        end
       end
       tags
     end

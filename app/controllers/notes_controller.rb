@@ -4,6 +4,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
+    @all_tags = Tag.all_load_by_user(current_user)
     @all_notes = Note.all_load_by_user(current_user)
   end
 

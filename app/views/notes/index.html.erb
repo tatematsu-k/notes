@@ -3,6 +3,23 @@
 <h1>Notes</h1>
 
 <div class="card-deck card-box">
+  <% @all_tags.each do |tag| %>
+    <%= basic_card do -%>
+      <%= card_header tag do -%>
+        <%= tag.name %>
+      <% end -%>
+      <% tag.notes.each do |note| %>
+        <div class="">
+          <%= note.title %>
+        </div>
+      <% end %>
+      <!-- <%= card_body do -%>
+      <% end -%> -->
+    <% end -%>
+  <% end %>
+</div>
+
+<div class="card-deck card-box">
   <% @all_notes.each do |note| %>
     <%= basic_card do -%>
       <%= card_header note do -%>

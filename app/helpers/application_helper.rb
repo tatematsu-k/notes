@@ -6,17 +6,19 @@ module ApplicationHelper
     content_tag(:div, capture(&block), options)
   end
 
-  def card_header(note, &block)
+  def card_header(data, &block)
     content_tag(:div, class: 'card-header') do
       concat(
-        content_tag(:div, class: 'card-button-group') do
-          concat link_to '編集',
-            edit_note_path(note),
-            class: ['btn', 'card-button', 'note-edit-button']
-          concat link_to '削除', note,
-            class: ['btn', 'card-button', 'note-delete-button'],
-            method: :delete,
-            data: { confirm: 'Are you sure?' }
+        if data.is_a?(Note)
+          content_tag(:div, class: 'card-button-group') do
+            concat link_to '編集',
+              edit_note_path(data),
+              class: ['btn', 'card-button', 'note-edit-button']
+            concat link_to '削除', data,
+              class: ['btn', 'card-button', 'note-delete-button'],
+              method: :delete,
+              data: { confirm: 'Are you sure?' }
+          end
         end
       )
       concat(

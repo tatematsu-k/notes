@@ -38,5 +38,13 @@ class Tag < ApplicationRecord
       end
       tag_list
     end
+
+    def all_load_by_user(login_user)
+      Tag.where(user: login_user)
+          .joins(:tag_memos)
+          .distinct
+          .order(:updated_at)
+          .reverse_order
+    end
   end
 end

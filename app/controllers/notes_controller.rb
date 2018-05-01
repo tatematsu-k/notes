@@ -23,10 +23,12 @@ class NotesController < ApplicationController
     end
     menu_active_reset
     @menu_items[:new_note][:active] = true
+    @form_button = '登録'
   end
 
   # GET /notes/1/edit
   def edit
+  @form_button = '更新'
   end
 
   # POST /notes

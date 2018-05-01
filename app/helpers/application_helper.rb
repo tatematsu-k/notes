@@ -41,6 +41,18 @@ module ApplicationHelper
     end
   end
 
+  def note_list_item(note)
+    link_to "#", class: ['list-group-item', 'list-group-item-action', 'flex-column', 'align-items-start'] do
+      concat(
+        content_tag(:div, class: ['d-flex', 'w-100', 'justify-content-between']) do
+          concat content_tag(:h5, note.title, class: ['note-title', 'mb-1'])
+          concat content_tag(:small, format_date(note.updated_at), class: 'text-muted')
+        end
+      )
+      concat content_tag(:div, simple_format(note.content), class: ['note-content', 'mb-1'])
+    end
+  end
+
   def format_date(date_time)
     now = Time.now
     diff = (now - date_time).floor

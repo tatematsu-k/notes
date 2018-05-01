@@ -42,7 +42,7 @@ module ApplicationHelper
   end
 
   def note_list_item(note)
-    link_to "#", class: ['list-group-item', 'list-group-item-action', 'flex-column', 'align-items-start'] do
+    link_to note_path(note), class: ['list-group-item', 'list-group-item-action', 'flex-column', 'align-items-start'] do
       concat(
         content_tag(:div, class: ['d-flex', 'w-100', 'justify-content-between']) do
           concat content_tag(:h5, note.title, class: ['note-title', 'mb-1'])

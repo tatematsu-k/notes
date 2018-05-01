@@ -101,6 +101,7 @@ $note-content-size: 13px;
   }
   .note-content {
     font-size: $note-content-size;
-      max-height: 30px;
+      max-height: 40px;
+      overflow: hidden;
   }
 }
